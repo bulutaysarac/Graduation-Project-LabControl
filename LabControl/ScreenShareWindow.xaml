@@ -1,0 +1,12 @@
+﻿<Window x:Class="LabControl.ScreenShareWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LabControl"
+        mc:Ignorable="d"
+        Title="ScreenShareWindow" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown" PreviewKeyDown="Window_PreviewKeyDown">
+    <Grid>
+        <Image Name="imgScreen" Stretch="None" MouseWheel="imgScreen_MouseWheel" MouseEnter="ImgScreen_MouseEnter" MouseLeave="ImgScreen_MouseLeave" MouseLeftButtonDown="ImgScreen_MouseLeftButtonDown" MouseLeftButtonUp="ImgScreen_MouseLeftButtonUp" MouseRightButtonDown="ImgScreen_MouseRightButtonDown" MouseRightButtonUp="ImgScreen_MouseRightButtonUp" AllowDrop="True" Drop="imgScreen_Drop"/>
+    </Grid>
+</Window>

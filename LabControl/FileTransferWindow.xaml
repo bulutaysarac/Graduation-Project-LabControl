@@ -1,0 +1,55 @@
+﻿<Window x:Class="LabControl.FileTransferWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LabControl"
+        mc:Ignorable="d"
+        Title="FileTransferWindow" Width="500" Height="200" Loaded="Window_Loaded" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" WindowStyle="None" Closing="Window_Closing">
+    <Window.Resources>
+        <local:TransferColorConverter x:Key="TransferColorConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid Name="dgList" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Filename" Binding="{Binding Filename}"/>
+                <DataGridTextColumn Width="*" Header="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn Width="*" Header="Progress" Binding="{Binding Progress}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Background" Value="{Binding Progress, Converter={StaticResource TransferColorConverter}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Transferred" Binding="{Binding Transferred}"/>
+                <DataGridTextColumn Width="*" Header="Running" Binding="{Binding Running}"/>
+                <DataGridTextColumn Width="*" Header="Paused" Binding="{Binding Paused}"/>
+                <DataGridTextColumn Width="*" Header="Type" Binding="{Binding Type}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ProgressBar Name="progressBarOverall" Height="30" Margin="5" Grid.Row="1" />
+        <TextBlock Name="txtCurrentComputerIP" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Text="-" FontSize="20" Margin="5"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="19,0">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Width" Value="100" />
+                    <Setter Property="Margin" Value="2" />
+                </Style>
+            </StackPanel.Resources>
+            <Button Name="btnPauseTransfer" Click="BtnPauseTransfer_Click" Width="32" Height="32">
+                <Image Source="Images/pause.png" Stretch="Fill" />
+            </Button>
+            <Button IsEnabled="False" Name="btnResumeTransfer" Click="BtnResumeTransfer_Click" Width="32" Height="32">
+                <Image Source="Images/play-button.png" Stretch="Fill" />
+            </Button>
+            <Button Name="btnStopTransfer" Click="BtnStopTransfer_Click" Width="32" Height="32">
+                <Image Source="Images/stop-button.png" Stretch="Fill" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

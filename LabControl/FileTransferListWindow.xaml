@@ -1,0 +1,35 @@
+﻿<Window x:Class="LabControl.FileTransferListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LabControl"
+        mc:Ignorable="d"
+        Title="FileTransferListWindow" Height="300" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:ColorConverter x:Key="ColorConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Name="dgComputerList" AutoGenerateColumns="False" IsReadOnly="True" CanUserSortColumns="False" Background="AliceBlue">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="2*" Header="IsRunning" Binding="{Binding IsRunning}" />
+                <DataGridTextColumn Width="2*" Header="Computer Local IP" Binding="{Binding IPAddress}" />
+                <DataGridTextColumn Width="2*" Header="Computer Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Width="*" Header="Sent" Binding="{Binding Sent}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Background" Value="{Binding Sent, Converter={StaticResource ColorConverter}}"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Name="btnStart" Width="120" Content="Start Transfer" Margin="5" Click="BtnStart_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
